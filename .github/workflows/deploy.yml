@@ -3,21 +3,24 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - master  # Set a branch name to trigger deployment
+      - master
   pull_request:
 
+permissions:
+  contents: write
+
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: "20"
+          cache: 'npm'
 
       - name: Install dependencies
         run: npm ci
@@ -30,4 +33,6 @@ jobs:
         if: github.ref == 'refs/heads/master'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./out 
+          publish_dir: ./out
+          commit_message: "Deploy to GitHub Pages"
+          force_orphan: true 
