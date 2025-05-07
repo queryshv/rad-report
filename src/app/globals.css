@@ -1,0 +1,132 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer base {
+  :root {
+    --background: 220 20% 97%; /* Light cool gray */
+    --foreground: 220 10% 25%; /* Dark cool gray */
+
+    --card: 220 20% 100%; /* White */
+    --card-foreground: 220 10% 25%;
+
+    --popover: 220 20% 100%;
+    --popover-foreground: 220 10% 25%;
+
+    /* Primary: Calm blue (#E3F2FD) for input fields and buttons */
+    --primary: 205 86% 94.1%; /* hsl(205, 86%, 94.1%) */
+    --primary-foreground: 205 30% 25%; /* Dark blue/gray for text on primary */
+
+    --secondary: 220 15% 90%; /* Slightly darker light gray for secondary elements */
+    --secondary-foreground: 220 10% 20%;
+
+    --muted: 220 15% 85%;
+    --muted-foreground: 220 10% 45%;
+
+    /* Accent: Teal (#008080) for highlighting - made darker */
+    --accent: 180 100% 22%; /* hsl(180, 100%, 22%) - Was 25.1% */
+    --accent-foreground: 0 0% 100%; /* White */
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 220 15% 88%;
+    /* Input border color, when inputs have light blue bg, this should contrast or complement */
+    --input: 205 50% 80%; /* Slightly darker blue for input borders */
+    --ring: 180 100% 32%; /* Teal based for focus rings - Was 35.1% */
+
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.5rem;
+
+    /* Sidebar variables, can keep default or align if sidebar is used */
+    --sidebar-background: 220 20% 98%;
+    --sidebar-foreground: 220 10% 25%;
+    --sidebar-primary: 205 86% 94.1%;
+    --sidebar-primary-foreground: 205 30% 25%;
+    --sidebar-accent: 180 100% 22%; /* Align with main accent */
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 220 15% 88%;
+    --sidebar-ring: 180 100% 32%; /* Align with main ring */
+  }
+
+  .dark {
+    --background: 220 15% 10%; /* Dark cool gray */
+    --foreground: 220 10% 85%; /* Light cool gray */
+
+    --card: 220 15% 12%; /* Slightly lighter dark gray */
+    --card-foreground: 220 10% 85%;
+
+    --popover: 220 15% 12%;
+    --popover-foreground: 220 10% 85%;
+
+    /* Primary: Calm blue for dark mode, needs adjustment */
+    --primary: 205 70% 35%; /* Darker calm blue */
+    --primary-foreground: 205 80% 90%; /* Lighter text for dark blue */
+
+    --secondary: 220 15% 18%;
+    --secondary-foreground: 220 10% 80%;
+
+    --muted: 220 15% 25%;
+    --muted-foreground: 220 10% 65%;
+
+    /* Accent: Teal for dark mode */
+    --accent: 180 100% 27%; /* Adjusted slightly from 30.1% if light theme is significantly darker */
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 220 15% 28%;
+    --input: 205 60% 45%; /* Darker blue border for inputs in dark mode */
+    --ring: 180 100% 37%; /* Adjusted from 40.1% */
+
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+
+    --sidebar-background: 220 15% 10%;
+    --sidebar-foreground: 220 10% 85%;
+    --sidebar-primary: 205 70% 35%;
+    --sidebar-primary-foreground: 205 80% 90%;
+    --sidebar-accent: 180 100% 27%; /* Align with main accent */
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 220 15% 28%;
+    --sidebar-ring: 180 100% 37%; /* Align with main ring */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Updated radio and checkbox colors for better contrast */
+@layer components {
+  .dark\:radio-item-darker[data-state='checked'],
+  .radio-item-darker[data-state='checked'] {
+    @apply border-accent text-accent; /* Keep border accent */
+  }
+  .dark\:radio-item-darker[data-state='checked'] > span > svg,
+  .radio-item-darker[data-state='checked'] > span > svg {
+    @apply fill-accent text-accent; /* Ensure inner circle is accent */
+  }
+
+  .dark\:checkbox-darker[data-state='checked'],
+  .checkbox-darker[data-state='checked'] {
+    @apply bg-accent border-accent text-accent-foreground; /* Use accent for checkbox bg */
+  }
+}
